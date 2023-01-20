@@ -1,0 +1,48 @@
+/*
+Insertion Sort
+The code template contains the code to arrange elements in ascending order using insertion sort. Elements are stored in an array.
+
+(i) Change the code to arrange elements in descending order
+
+(ii) store elements using a vector
+*/
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+int key,i,j,n;
+//Take input for number of elements in the array
+cout<<"Enter number of elements: ";
+cin>>n;
+
+//Create a vector with n elements
+vector<int> elements(n);
+
+//Take input for the elements of the array
+cout<<"Enter the elements: ";
+for(i=0;i<n;i++)
+    cin>>elements[i];
+
+//Implementation of Insertion Sort
+for(j=1;j<n;j++)
+{
+    key = elements[j];
+    i = j-1;
+    while((i>=0)&&(elements[i]<key))
+    {
+        elements[i+1] = elements[i];
+        i = i-1;
+    }
+    elements[i+1] = key;
+}
+
+//Print the sorted array
+cout<<"Sorted array: "<<endl;
+for(i=0;i<n;i++)
+{
+    cout<<elements[i]<<endl;
+}
+return 0;
+}
