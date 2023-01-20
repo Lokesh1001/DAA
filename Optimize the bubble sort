@@ -1,0 +1,57 @@
+/*
+The code given below does bubble sorting. Both best and worst case complexity of the algorithm coded here is O(n2). Optmize the code so that the process of sorting shall be sorted once the elements are in ascending order.
+
+Note: Please do not click execute button before optimizing the sorting
+
+Input Format
+
+First line contains the number of elements, n
+
+Next 'n' lines contain the elements in the array
+
+Output Format
+
+Print elements in ascending order in a line separated by a space
+*/
+#include<iostream>
+#include<vector>
+using namespace std;
+// elements a and b are passed by reference
+void swap(int &a, int &b)
+{
+	int t;
+	t = a;
+	a = b;
+	b = t;
+}
+
+void bubble_sort_optimized(int elements[],int n)
+{
+int i, j;
+	for(i=0;i<n-1;i++)
+	{
+	    bool swapped=false;
+		for(j=0;j<n-i-1;j++)
+		{
+			if(elements[j]>elements[j+1])
+				swap(elements[j], elements[j+1]);
+				swapped=true;
+		}
+		if(swapped==false)
+		break; // elements are indeed already sorted
+	}
+}
+int main()
+{
+	vector<int> elements;
+	int i, j, n,e;
+	cin>>n;
+	for(i=0;i<n;i++)
+	{
+		cin>>e;
+		elements.push_back(e);	
+	}
+	bubble_sort_optimized(elements.data(),n);
+	for(auto it = elements.begin();it!=elements.end();it++)
+		cout<<*it<<" ";
+}
