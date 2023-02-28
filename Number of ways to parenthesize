@@ -1,0 +1,18 @@
+#include<iostream>
+#include<iomanip>
+// author @lokesh
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    n--;
+    double sum=1;
+    for(int i=1;i<=2*n;i++){
+        sum*=i;
+    }
+    double sum2=1;
+    for(int i=1;i<=n;i++){
+        sum2*=i;
+    }
+    cout<<fixed<<setprecision(0)<<sum/((sum2*sum2)*(n+1));
+}
