@@ -1,0 +1,68 @@
+Sort books via insertion sort
+Create a class book with title, author name, access number, price. Modify the insertion sort in the template code to
+
+(i) Sort books in ascending order as per access number
+
+(ii) Use vector
+
+(iii) do minimal changes to the given code
+
+//////////////////////////////////////
+sort array of structures with respect to a given structure local value using vectors 
+//////////////////////////////////////
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+///*
+class  book{
+    public:
+    vector<double> no;
+    vector<double> pr;
+    vector<string> title;
+    vector<string> name;
+    void set(){
+        double a,b;
+        string c,d;
+        cin>>c>>d>>a>>b;
+        title.push_back(c);
+        name.push_back(d);
+        no.push_back(a);
+       pr.push_back(b);
+    }
+    void print(){
+        cout<<title[0]<<endl<<name[0]<<endl<<no[0]<<endl<<pr[0]<<endl;
+    }
+
+};
+int main()
+{
+    int key,i,j,n;
+    //cout<<"Enter number of elements";
+    cin>>n;
+    vector<book> obj(n);
+    for(i=0;i<n;i++){
+        obj[i].set();
+    }
+    vector<int> elements(n);
+    for(int i=0;i<n;i++){
+        elements[i]=i;
+    }
+    for(j=0;j<n;j++)
+    {
+        key = obj[elements[j]].no[0];
+        int pos=j;
+        i = j-1;
+        while((i>=0)&&(obj[elements[i]].no[0]>key))
+        {
+            elements[i+1] = elements[i];
+            i = i-1;
+        }
+        elements[i+1] = pos;
+    }
+
+
+    for(int i=0;i<n;i++){
+        obj[elements[i]].print();
+    }
+}
