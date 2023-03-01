@@ -1,0 +1,50 @@
+#include<iostream> 
+using namespace std; 
+#include<vector> 
+#include<math.h>
+class components 
+{
+    float ticket; 
+    float food; 
+    float luggage; 
+public: 
+    float total;
+    friend istream& operator>>(istream& in,components& i) 
+    {
+        in>>i.ticket>>i.food>>i.luggage;
+        i.total = i.ticket + i.food + sqrt(i.luggage);
+    }
+    friend ostream& operator<<(ostream& out, components& i) 
+    {
+        cout<<i.ticket<<" "<<i.food<<" "<<i.luggage<<endl; 
+    }
+    bool operator<(components&); 
+    bool operator>(components&); 
+};
+components max(vector<components>elements,int left,int right){
+    if(left==right) return elements[left];
+    int mid = left + (right-left)/2;
+    components leftMax = max(elements,left,mid);
+    components rightMax = max(elements,mid+1,right);
+    return leftMax.total > rightMax.total ? leftMax : rightMax;
+}
+bool components::operator<(components& c){
+    return total < c.total;
+}
+bool components::operator>(components& c){
+    return total > c.total;
+}
+int main() 
+{
+    int i,n; 
+    components ele,ret; 
+    vector<components> elements; 
+    cin>>n; 
+    for(i=0;i<n;i++) 
+    {
+        cin>>ele; 
+        elements.push_back(ele); 
+    }
+    ret = max(elements,0,n-1); 
+    cout<<ret; 
+}
